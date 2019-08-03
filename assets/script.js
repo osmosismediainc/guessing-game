@@ -34,8 +34,9 @@ var guessesSoFar = [];
 var psychicLetter;
 // generate a random letter using a random number generated as one to twenty-six (length of the alphabet's characters) and define it as the "psychic letter"
 var newLetter = function() {
-    psychicLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+	psychicLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
 };
+newLetter();
 // Add letter guessed to the list in the html element "guesses"
 var soFar = function() {
     document.getElementById("guesses").innerHTML = guessesSoFar.join(",");
@@ -54,6 +55,8 @@ var newGame = function() {
 }
 // When the key is presses
 document.onkeyup = function(event) {
+	// LETS SEE SOME CONSOLE STUFF
+	console.log("Psychic Letter: " + psychicLetter);
 	var userGuess = event.key;
     left--;
     guessesSoFar.push(userGuess);
@@ -61,11 +64,13 @@ document.onkeyup = function(event) {
     guessesLeft();
     if (left > 0) {
         if (userGuess == psychicLetter) {
+			alert("You Win!")
         	wins++;
         	document.getElementById("wins").innerHTML = wins;
             newGame();
         }
     } else if (left == 0) {
+		alert("You Loose! Sorry! Go Home")
     	losses++;
     	document.getElementById("losses").innerHTML = losses;
         newGame();
